@@ -1,6 +1,6 @@
 // By Chris Andriessen
-// Requires second Arduino UNO
-// Only needs TX to GRBL RX connected
+// Requires second Arduino UNO or MEGA
+// Only needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected
 // Can be used while connected to PC with Gcode sender software
 
 int X1Pin = 7;
