@@ -1,5 +1,5 @@
 # GRBLPendant  
-Arduino UNO Pendant for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
+Arduino UNO or MEGA Pendant for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
 
 * Requires second Arduino UNO or MEGA  
 * Only needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected  
