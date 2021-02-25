@@ -1,6 +1,7 @@
 // By Chris Andriessen
-// Only requires second Arduino UNO
+// Requires second Arduino UNO
 // Only needs TX to GRBL RX connected
+// Can be used while connected to PC with Gcode sender software
 
 int X1Pin = 7;
 int X2Pin = 6;
