@@ -28,9 +28,10 @@ void setup() {
   pinMode(Z2Pin, INPUT);
   pinMode(T8Pin, INPUT);
   Serial.begin(115200);
+  commandSender();
 }
 
-void loop(){
+void commandSender(){
 
   X1val = digitalRead(X1Pin); 
   X2val = digitalRead(X2Pin); 
@@ -80,13 +81,12 @@ void loop(){
     Serial.println("$J=G21G91Z-0.1F500");
   }
 
-  else if (T8val == HIGH) {        
-    Serial.println("$X");
+  else if (T8val == HIGH) { 
+     Serial.println("$X");
   }
 
-    Serial.end();
-    delay(50);
-    setup();
-    exit;
-  
+   Serial.end();
+   delay(50);
+   setup();
+   exit;
 }
