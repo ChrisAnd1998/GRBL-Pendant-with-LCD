@@ -26,7 +26,7 @@ LCD Displays:
 * Z
 
 
-**Video**  
+**Video** : https://www.youtube.com/watch?v=AHFh_BJhGSI
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/AHFh_BJhGSI/0.jpg)](https://www.youtube.com/watch?v=AHFh_BJhGSI)
 
 Tip: Use 10k resistors for your buttons to avoid static interference!
