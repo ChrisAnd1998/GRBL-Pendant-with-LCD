@@ -57,6 +57,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
        lcd.setCursor(0,0);
        lcd.print("Status: ");
        lcd.print(ms.GetCapture (buf,0));
+       lcd.print("      ");
       }
       buf [100] = "";
      }
@@ -90,6 +91,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
        lcd.setCursor(0,1);
        lcd.print("X: ");
        lcd.print(ms.GetCapture (buf,0));
+       lcd.print("      ");
       }
       buf [100] = "";
      }
@@ -107,6 +109,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
        lcd.setCursor(0,2);
        lcd.print("Y: ");
        lcd.print(ms.GetCapture (buf,0));
+       lcd.print("      ");
       }
       buf [100] = "";
      }
@@ -124,11 +127,11 @@ SoftwareSerial mySerial(10, 11); // RX, TX
        lcd.setCursor(0,3);
        lcd.print("Z: ");
        lcd.print(ms.GetCapture (buf,0));
+       lcd.print("      ");
       }
       buf [100] = "";
      }
 
     
 
-     
      
