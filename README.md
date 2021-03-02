@@ -3,7 +3,7 @@ Arduino UNO or MEGA Pendant with LCD for GRBL 1.1f (Jog X Y Z and send any Comma
 
 * Requires second Arduino UNO or MEGA for pendant and another MEGA for LCD.
 * Needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected.
-* Needs Serial RX from LCD Arduino to Serial TX on GRBL Arduino connected.
+* Needs Serial RX(pin 10) from LCD Arduino to Serial TX on GRBL Arduino connected.
 * Can be used while connected to PC with Gcode sender software. 
 
 Send any command to GRBL with push buttons. 
