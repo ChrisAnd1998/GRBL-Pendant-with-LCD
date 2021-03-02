@@ -64,18 +64,32 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
      if(data.indexOf(",") >= 0){
       if(data.indexOf(".") >= 0){
         if(data.indexOf(":") >= 0){
+        
   
 
              lcd.setCursor(0,0);
              lcd.print("Status: ");
              lcd.print(Statusd);
+             int ttt = 8 + Statusd.length();
+             int count = 20 - ttt;
+             lcd.setCursor(ttt,0);
+             while(count > 0 ){
+               lcd.print(" ");
+               count -= 1;
+             }
 
 
            if(Xd.indexOf(".") >= 0){
              lcd.setCursor(0,2);  
              lcd.print("Y: ");
              lcd.print(Xd);
-             Serial.println("~");
+             int ttt2 = 3 + Xd.length();
+             int count2 = 20 - ttt2;
+             lcd.setCursor(ttt2,2);
+             while(count2 > 0 ){
+               lcd.print(" ");
+               count2 -= 1;
+             }
            }
 
  
@@ -83,6 +97,13 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
              lcd.setCursor(0,3);
              lcd.print("Z: ");
              lcd.print(Yd);
+             int ttt3 = 3 + Yd.length();
+             int count3 = 20 - ttt3;
+             lcd.setCursor(ttt3,3);
+             while(count3 > 0 ){
+               lcd.print(" ");
+               count3 -= 1;
+             }
            }
 
 
@@ -90,10 +111,17 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
              lcd.setCursor(0,1);
              lcd.print("X: ");
              lcd.print(Zd);
+             int ttt4 = 3 + Zd.length();
+             int count4 = 20 - ttt4;
+             lcd.setCursor(ttt4,1);
+             while(count4 > 0 ){
+               lcd.print(" ");
+               count4 -= 1;
+             }
            }
 
-
-
+        
+       
       }
      }
     }
