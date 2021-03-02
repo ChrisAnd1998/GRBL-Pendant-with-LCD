@@ -1,0 +1,101 @@
+#include <Wire.h>  
+#include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+
+#define _SS_MAX_RX_BUFF 1
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+SoftwareSerial mySerial(10, 11); // RX, TX
+   
+    
+    String data = "";
+    String Posd = "";
+    String Xd = "";
+    String Yd = "";
+    String Zd = "";
+    String Statusd = "";
+
+    void setup()  
+    {
+        mySerial.begin(115200);
+        lcd.begin();
+    }
+
+    void loop() // run over and over
+    {
+      while(mySerial.available()==0)
+      {}
+      char character;
+      while(mySerial.available()>0)
+      {
+       character = mySerial.read();
+       data += character;
+      }
+      
+
+int posdelimiter, posdelimiter_1;
+posdelimiter = data.indexOf("|");
+posdelimiter_1 = data.indexOf("|", posdelimiter + 1);
+String first = data.substring(posdelimiter + 1, posdelimiter_1);
+Statusd = data.substring(1, posdelimiter);
+
+
+int Pdelimiter, Pdelimiter_1, Pdelimiter_2, Pdelimiter_3;
+Pdelimiter = first.indexOf(",");
+Pdelimiter_1 = first.indexOf(",", Pdelimiter + 1);
+Pdelimiter_2 = first.indexOf(",", Pdelimiter_1 +1);
+Pdelimiter_3 = first.indexOf(",", Pdelimiter_2 +1);
+Xd = first.substring(Pdelimiter + 1, Pdelimiter_1);
+Yd = first.substring(Pdelimiter_1 + 1, Pdelimiter_2);
+Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
+ Zd.replace("MPos:", "");
+
+
+
+ if(data.indexOf("<") >= 0){
+  if(data.indexOf(">") >= 0){
+   if(data.indexOf("|") >= 0){
+     if(data.indexOf(",") >= 0){
+      if(data.indexOf(".") >= 0){
+        if(data.indexOf(":") >= 0){
+  
+
+             lcd.setCursor(0,0);
+             lcd.print("Status: ");
+             lcd.print(Statusd);
+
+
+           if(Xd.indexOf(".") >= 0){
+             lcd.setCursor(0,2);  
+             lcd.print("Y: ");
+             lcd.print(Xd);
+             Serial.println("~");
+           }
+
+ 
+           if(Yd.indexOf(".") >= 0){     
+             lcd.setCursor(0,3);
+             lcd.print("Z: ");
+             lcd.print(Yd);
+           }
+
+
+           if(Zd.indexOf(".") >= 0){
+             lcd.setCursor(0,1);
+             lcd.print("X: ");
+             lcd.print(Zd);
+           }
+
+
+
+      }
+     }
+    }
+   }
+  }
+ }
+
+       
+  data = "";
+     
+    }
