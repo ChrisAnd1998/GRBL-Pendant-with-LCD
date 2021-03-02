@@ -53,12 +53,12 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       MatchState ms;
       ms.Target (char_array);  
       char result = ms.Match ("<([A-z]+)\|", 0); 
-
       if (result == REGEXP_MATCHED){
        lcd.setCursor(0,0);
        lcd.print("Status: ");
        lcd.print(ms.GetCapture (buf,0));
       }
+      buf [100] = "";
      }
 
      void getPOS(){
@@ -86,12 +86,12 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       MatchState ms;
       ms.Target (char_array); 
       char result = ms.Match ("([0-9-]+[.][0-9]+)", 0);  
-
       if (result == REGEXP_MATCHED){
        lcd.setCursor(0,1);
        lcd.print("X: ");
        lcd.print(ms.GetCapture (buf,0));
       }
+      buf [100] = "";
      }
 
      void getY(){
@@ -103,12 +103,12 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       MatchState ms;
       ms.Target (char_array);
       char result = ms.Match (",([0-9-]+[.][0-9]+),", 0);  
-
       if (result == REGEXP_MATCHED){
        lcd.setCursor(0,2);
        lcd.print("Y: ");
        lcd.print(ms.GetCapture (buf,0));
       }
+      buf [100] = "";
      }
 
      void getZ(){
@@ -120,14 +120,15 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       MatchState ms;
       ms.Target (char_array); 
       char result = ms.Match ("([0-9-]+[.][0-9]+)$", 0);  
-
       if (result == REGEXP_MATCHED){
        lcd.setCursor(0,3);
        lcd.print("Z: ");
        lcd.print(ms.GetCapture (buf,0));
       }
+      buf [100] = "";
      }
 
     
 
+     
      
