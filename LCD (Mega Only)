@@ -8,6 +8,8 @@
 #include <Wire.h>  
 #include <LiquidCrystal_I2C.h>
 #include <SoftwareSerial.h>
+#include <Regexp.h>
+
 
 #define _SS_MAX_RX_BUFF 1
 
@@ -17,10 +19,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
     
     String data = "";
     String Posd = "";
-    String Xd = "";
-    String Yd = "";
-    String Zd = "";
-    String Statusd = "";
+   
 
     void setup()  
     {
@@ -37,108 +36,98 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       {
        character = mySerial.read();
        data += character;
-      }
-      
+     }
+     getStatus();
+     getPOS();
+     data = "";
+     }
 
-int posdelimiter, posdelimiter_1;
-posdelimiter = data.indexOf("|");
-posdelimiter_1 = data.indexOf("|", posdelimiter + 1);
-String first = data.substring(posdelimiter + 1, posdelimiter_1);
-Statusd = data.substring(1, posdelimiter);
+     
+     
+     void getStatus(){
+      String str = data; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array);  
+      char result = ms.Match ("<([A-z]+)\|", 0); 
 
-
-int Pdelimiter, Pdelimiter_1, Pdelimiter_2, Pdelimiter_3;
-Pdelimiter = first.indexOf(",");
-Pdelimiter_1 = first.indexOf(",", Pdelimiter + 1);
-Pdelimiter_2 = first.indexOf(",", Pdelimiter_1 +1);
-Pdelimiter_3 = first.indexOf(",", Pdelimiter_2 +1);
-Xd = first.substring(Pdelimiter + 1, Pdelimiter_1);
-Yd = first.substring(Pdelimiter_1 + 1, Pdelimiter_2);
-Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
- Zd.replace("MPos:", "");
-
-
-
- if(data.indexOf("<") >= 0){
-  if(data.indexOf(">") >= 0){
-   if(data.indexOf("|") >= 0){
-     if(data.indexOf(",") >= 0){
-      if(data.indexOf(".") >= 0){
-        if(data.indexOf(":") >= 0){
-          if(data.indexOf("MPos") >= 0){
-             if(data.indexOf("Pn:HS") >= 0){
-              if(data.indexOf("FS:") >= 0){
-        
-  
-      
-             lcd.setCursor(0,0);
-             lcd.print("Status: ");
-             lcd.print(Statusd);
-             int ttt = 8 + Statusd.length();
-             int count = 20 - ttt;
-             lcd.setCursor(ttt,0);
-             while(count > 0 ){
-               lcd.print(" ");
-               count -= 1;
-             }
-
-            
-
-
-           if(Xd.indexOf(".") >= 0){
-             lcd.setCursor(0,2);  
-             lcd.print("Y: ");
-             lcd.print(Xd);
-             int ttt2 = 3 + Xd.length();
-             int count2 = 20 - ttt2;
-             lcd.setCursor(ttt2,2);
-             while(count2 > 0 ){
-               lcd.print(" ");
-               count2 -= 1;
-             }
-           }
-
- 
-           if(Yd.indexOf(".") >= 0){     
-             lcd.setCursor(0,3);
-             lcd.print("Z: ");
-             lcd.print(Yd);
-             int ttt3 = 3 + Yd.length();
-             int count3 = 20 - ttt3;
-             lcd.setCursor(ttt3,3);
-             while(count3 > 0 ){
-               lcd.print(" ");
-               count3 -= 1;
-             }
-           }
-
-
-           if(Zd.indexOf(".") >= 0){
-             lcd.setCursor(0,1);
-             lcd.print("X: ");
-             lcd.print(Zd);
-             int ttt4 = 3 + Zd.length();
-             int count4 = 20 - ttt4;
-             lcd.setCursor(ttt4,1);
-             while(count4 > 0 ){
-               lcd.print(" ");
-               count4 -= 1;
-             }
-           }
-         
-         
-         }
-        }
-       }
+      if (result == REGEXP_MATCHED){
+       lcd.setCursor(0,0);
+       lcd.print("Status: ");
+       lcd.print(ms.GetCapture (buf,0));
       }
      }
-    }
-   }
-  }
- }
+
+     void getPOS(){
+      String str = data; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array); 
+      char result = ms.Match ("MPos:((.*))\|FS", 0);  
+      Posd = ms.GetCapture (buf,0);
+      getX();
+      getY();
+      getZ();
+     }
 
 
-       
-  data = "";
+     void getX(){
+      String str = Posd; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array); 
+      char result = ms.Match ("([0-9-]+[.][0-9]+)", 0);  
+
+      if (result == REGEXP_MATCHED){
+       lcd.setCursor(0,1);
+       lcd.print("X: ");
+       lcd.print(ms.GetCapture (buf,0));
+      }
+     }
+
+     void getY(){
+      String str = Posd; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array);
+      char result = ms.Match (",([0-9-]+[.][0-9]+),", 0);  
+
+      if (result == REGEXP_MATCHED){
+       lcd.setCursor(0,2);
+       lcd.print("Y: ");
+       lcd.print(ms.GetCapture (buf,0));
+      }
+     }
+
+     void getZ(){
+      String str = Posd; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array); 
+      char result = ms.Match ("([0-9-]+[.][0-9]+)$", 0);  
+
+      if (result == REGEXP_MATCHED){
+       lcd.setCursor(0,3);
+       lcd.print("Z: ");
+       lcd.print(ms.GetCapture (buf,0));
+      }
+     }
+
+    
+
      
-    }
