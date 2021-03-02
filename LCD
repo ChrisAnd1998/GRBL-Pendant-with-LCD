@@ -1,3 +1,9 @@
+// By Chris Andriessen
+// Requires second Arduino MEGA
+// Only needs Serial RX from LCD Arduino to Serial TX on GRBL Arduino connected
+// Can be used while connected to PC with Gcode sender software
+
+
 #include <Wire.h>  
 #include <LiquidCrystal_I2C.h>
 #include <SoftwareSerial.h>
