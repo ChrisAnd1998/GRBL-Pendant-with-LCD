@@ -1,4 +1,4 @@
-# GRBLPendant  
+# GRBL Pendant with LCD
 Arduino UNO or MEGA Pendant for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
 
 * Requires second Arduino UNO or MEGA  
