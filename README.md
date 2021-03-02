@@ -1,9 +1,10 @@
 # GRBL Pendant with LCD
-Arduino UNO or MEGA Pendant for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
+Arduino UNO or MEGA Pendant with LCD for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
 
-* Requires second Arduino UNO or MEGA  
-* Only needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected  
-* Can be used while connected to PC with Gcode sender software  
+* Requires second Arduino UNO or MEGA for pendant and another MEGA for LCD.
+* Needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected.
+* Needs Serial RX from LCD Arduino to Serial TX on GRBL Arduino connected.
+* Can be used while connected to PC with Gcode sender software. 
 
 Send any command to GRBL with push buttons. 
 Already included Jogging with pin 7, 6, 5, 4, 3 and 2. Diagonal jogging support included.
@@ -17,6 +18,12 @@ And Unlock with pin 8.
 * Pin 2 = Z2  
 
 * Pin 8 = Unlock
+
+LCD Displays:
+* Status
+* X
+* Y
+* Z
 
 
 Tip: Use 10k resistors for your buttons to avoid static interference!
