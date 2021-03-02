@@ -54,10 +54,10 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       ms.Target (char_array);  
       char result = ms.Match ("<([A-z]+)\|", 0); 
       if (result == REGEXP_MATCHED){
-       lcd.setCursor(0,0);
-       lcd.print("Status: ");
+       lcd.setCursor(0,3);
+       lcd.print("S: ");
        lcd.print(ms.GetCapture (buf,0));
-       lcd.print("      ");
+       lcd.print("  ");
       }
       buf [100] = "";
      }
@@ -75,6 +75,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       getX();
       getY();
       getZ();
+      getFeed();
      }
 
 
@@ -88,7 +89,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       ms.Target (char_array); 
       char result = ms.Match ("([0-9-]+[.][0-9]+)", 0);  
       if (result == REGEXP_MATCHED){
-       lcd.setCursor(0,1);
+       lcd.setCursor(0,0);
        lcd.print("X: ");
        lcd.print(ms.GetCapture (buf,0));
        lcd.print("      ");
@@ -106,7 +107,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       ms.Target (char_array);
       char result = ms.Match (",([0-9-]+[.][0-9]+),", 0);  
       if (result == REGEXP_MATCHED){
-       lcd.setCursor(0,2);
+       lcd.setCursor(0,1);
        lcd.print("Y: ");
        lcd.print(ms.GetCapture (buf,0));
        lcd.print("      ");
@@ -124,7 +125,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       ms.Target (char_array); 
       char result = ms.Match ("([0-9-]+[.][0-9]+)$", 0);  
       if (result == REGEXP_MATCHED){
-       lcd.setCursor(0,3);
+       lcd.setCursor(0,2);
        lcd.print("Z: ");
        lcd.print(ms.GetCapture (buf,0));
        lcd.print("      ");
@@ -132,6 +133,21 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       buf [100] = "";
      }
 
-    
+     void getFeed(){
+      String str = data; 
+      int str_len = str.length() + 1; 
+      char char_array[str_len];
+      str.toCharArray(char_array, str_len);
+      char buf [100];
+      MatchState ms;
+      ms.Target (char_array);  
+      char result = ms.Match ("FS:([0-9]+,[0-9]+)", 0); 
+      if (result == REGEXP_MATCHED){
+       lcd.setCursor(10,3);
+       lcd.print("F: ");
+       lcd.print(ms.GetCapture (buf,0));
+      }
+      buf [100] = "";
+     }
 
      
