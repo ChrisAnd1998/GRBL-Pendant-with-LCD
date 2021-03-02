@@ -1,7 +1,8 @@
 // By Chris Andriessen
-// Requires second Arduino MEGA
-// Only needs Serial RX from LCD Arduino to Serial TX on GRBL Arduino connected
-// Can be used while connected to PC with Gcode sender software
+// Requires second Arduino UNO or MEGA for pendant and another MEGA for LCD.
+// Needs Serial TX from pendant Arduino to Serial RX on GRBL Arduino connected.
+// Needs Serial RX from LCD Arduino to Serial TX on GRBL Arduino connected.
+// Can be used while connected to PC with Gcode sender software.
 
 
 #include <Wire.h>  
