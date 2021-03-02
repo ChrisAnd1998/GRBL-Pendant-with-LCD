@@ -64,9 +64,12 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
      if(data.indexOf(",") >= 0){
       if(data.indexOf(".") >= 0){
         if(data.indexOf(":") >= 0){
+          if(data.indexOf("MPos") >= 0){
+             if(data.indexOf("Pn:HS") >= 0){
+              if(data.indexOf("FS:") >= 0){
         
   
-
+      
              lcd.setCursor(0,0);
              lcd.print("Status: ");
              lcd.print(Statusd);
@@ -77,6 +80,8 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
                lcd.print(" ");
                count -= 1;
              }
+
+            
 
 
            if(Xd.indexOf(".") >= 0){
@@ -119,15 +124,18 @@ Zd = first.substring(Pdelimiter_2 + 1, Pdelimiter_3);
                count4 -= 1;
              }
            }
-
-        
-       
+         
+         
+         }
+        }
+       }
       }
      }
     }
    }
   }
  }
+
 
        
   data = "";
