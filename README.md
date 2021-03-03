@@ -1,4 +1,6 @@
 # GRBL 1.1 Pendant with LCD
+![IMG_20210303_090325](https://user-images.githubusercontent.com/50437199/109773474-89943300-7bff-11eb-8153-c5cf375ac23e.jpg)
+
 Arduino UNO or MEGA Pendant with LCD for GRBL 1.1f (Jog X Y Z and send any Command while connected to PC simultaneously)  
 
 * Requires second Arduino UNO or MEGA for pendant and another MEGA for LCD.
