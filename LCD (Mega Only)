@@ -11,8 +11,6 @@
 #include <Regexp.h>
 
 
-#define _SS_MAX_RX_BUFF 1
-
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 SoftwareSerial mySerial(10, 11); // RX, TX
    
