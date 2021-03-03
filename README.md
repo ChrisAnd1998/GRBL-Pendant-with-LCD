@@ -6,6 +6,10 @@ Arduino UNO or MEGA Pendant with LCD for GRBL 1.1f (Jog X Y Z and send any Comma
 * Needs Serial RX(pin 10) from LCD Arduino to Serial TX on GRBL Arduino connected.
 * Can be used while connected to PC with Gcode sender software. 
 
+Libraries:
+* https://www.arduino.cc/reference/en/libraries/regexp/
+* https://www.arduino.cc/reference/en/libraries/liquidcrystal-i2c/
+
 Send any command to GRBL with push buttons. 
 Already included Jogging with pin 7, 6, 5, 4, 3 and 2. Diagonal jogging support included.
 And Unlock with pin 8.
