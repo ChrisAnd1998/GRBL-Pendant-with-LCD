@@ -25,6 +25,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
     {
         mySerial.begin(115200);
         lcd.begin();
+        drawEmpty();
     }
 
     void loop() // run over and over
@@ -39,10 +40,22 @@ SoftwareSerial mySerial(10, 11); // RX, TX
      }
      getStatus();
      getPOS();
-     data = "";
-     }
 
-     
+     data = "";
+    }
+
+    void drawEmpty(){
+      lcd.setCursor(0,0);
+      lcd.print("X: 0.000            ");
+      lcd.setCursor(0,1);
+      lcd.print("Y: 0.000            ");
+      lcd.setCursor(0,2);
+      lcd.print("Z: 0.000            ");
+      lcd.setCursor(0,3);
+      lcd.print("FS: 0      ");
+      lcd.setCursor(11,3);
+      lcd.print(">: NoData");
+    }
      
      void getStatus(){
       String str = data; 
@@ -55,7 +68,7 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       char result = ms.Match ("<([A-z]+)\|", 0); 
       if (result == REGEXP_MATCHED){
        lcd.setCursor(11,3);
-       lcd.print("S: ");
+       lcd.print(">: ");
        lcd.print(ms.GetCapture (buf,0));
        String buflen(ms.GetCapture (buf,0));
        int len = 9 - (3 + buflen.length());
@@ -161,13 +174,13 @@ SoftwareSerial mySerial(10, 11); // RX, TX
       char buf [100];
       MatchState ms;
       ms.Target (char_array);  
-      char result = ms.Match ("FS:([0-9]+,[0-9]+)", 0); 
+      char result = ms.Match ("FS:([0-9]+),[0-9]+", 0); 
       if (result == REGEXP_MATCHED){
        lcd.setCursor(0,3);
-       lcd.print("F: ");
+       lcd.print("FS: ");
        lcd.print(ms.GetCapture (buf,0));
        String buflen(ms.GetCapture (buf,0));
-       int len = 11 - (3 + buflen.length());
+       int len = 10 - (3 + buflen.length());
        while (len > 0) {
         lcd.print(" ");
         len -= 1;
