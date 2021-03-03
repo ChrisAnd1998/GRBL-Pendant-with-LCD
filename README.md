@@ -24,10 +24,8 @@ And Unlock with pin 8.
 * Pin 8 = Unlock
 
 LCD Displays:
-* Status
-* X
-* Y
-* Z
+![IMG_20210303_090054](https://user-images.githubusercontent.com/50437199/109773085-12f73580-7bff-11eb-8436-7b7d54cffe93.jpg)
+
 
 
 **Video** : https://www.youtube.com/watch?v=AHFh_BJhGSI  
