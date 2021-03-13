@@ -4,6 +4,8 @@
 // Needs Serial RX(pin 10) from LCD Arduino to Serial TX on GRBL Arduino connected.
 // Can be used while connected to PC with Gcode sender software.
 
+
+
 int X1Pin = 7;
 int X2Pin = 6;
 int Y1Pin = 5;
@@ -16,9 +18,12 @@ int X1val = 0;
 int X2val = 0;  
 int Y1val = 0;  
 int Y2val = 0;   
+
 int Z1val = 0;  
 int Z2val = 0; 
 int T8val = 0;  
+
+
 
 void setup() {
   pinMode(X1Pin, INPUT);
@@ -28,11 +33,7 @@ void setup() {
   pinMode(Z1Pin, INPUT);
   pinMode(Z2Pin, INPUT);
   pinMode(T8Pin, INPUT);
-  Serial.begin(115200);
-  commandSender();
-}
-
-void commandSender(){
+ 
 
   X1val = digitalRead(X1Pin); 
   X2val = digitalRead(X2Pin); 
@@ -42,52 +43,91 @@ void commandSender(){
   Z2val = digitalRead(Z2Pin); 
   T8val = digitalRead(T8Pin); 
 
-  if (X1val == HIGH && Y1val == HIGH) {        
+  
+
+
+  if (X1val == HIGH && Y1val == HIGH) {  
+     Serial.begin(115200);      
     Serial.println("$J=G21G91X0.1Y0.1F1000");
+     Serial.println("?");
+     Serial.end();
   }
 
   else if (X2val == HIGH && Y2val == HIGH) {        
+    Serial.begin(115200); 
     Serial.println("$J=G21G91X-0.1Y-0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
   else if (X1val == HIGH && Y2val == HIGH) {        
+    Serial.begin(115200); 
     Serial.println("$J=G21G91X0.1Y-0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
   else if (X2val == HIGH && Y1val == HIGH) {        
+    Serial.begin(115200); 
     Serial.println("$J=G21G91X-0.1Y0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
   
   else if (X1val == HIGH) {        
+    Serial.begin(115200); 
     Serial.println("$J=G21G91X0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
-  else if (X2val == HIGH) {        
+  else if (X2val == HIGH) {     
+    Serial.begin(115200);    
     Serial.println("$J=G21G91X-0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
-  else if (Y1val == HIGH) {        
+  else if (Y1val == HIGH) {    
+    Serial.begin(115200);     
     Serial.println("$J=G21G91Y0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
-  else if (Y2val == HIGH) {        
+  else if (Y2val == HIGH) {    
+    Serial.begin(115200);     
     Serial.println("$J=G21G91Y-0.1F1000");
+    Serial.println("?");
+    Serial.end();
   }
 
-  else if (Z1val == HIGH) {        
+  else if (Z1val == HIGH) {    
+    Serial.begin(115200);     
     Serial.println("$J=G21G91Z0.1F500");
+    Serial.println("?");
+    Serial.end();
   }
 
-  else if (Z2val == HIGH) {        
+  else if (Z2val == HIGH) {     
+    Serial.begin(115200);    
     Serial.println("$J=G21G91Z-0.1F500");
+    Serial.println("?");
+    Serial.end();
   }
 
   else if (T8val == HIGH) { 
+    Serial.begin(115200); 
      Serial.println("$X");
+     Serial.println("?");
+     Serial.end();
   }
 
-   Serial.end();
-   delay(50);
-   setup();
-   exit;
+
+   
+    delay(50);
+    setup();
+    exit;
+
 }
+
